@@ -8,4 +8,6 @@ public interface UserService {
 
 
     UserResponse registerRequest(RegisterRequest request);
+
+    UserResponse getUser(java.lang.String userId);
 }
