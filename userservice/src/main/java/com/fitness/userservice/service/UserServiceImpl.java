@@ -4,11 +4,14 @@ import com.fitness.userservice.dto.RegisterRequest;
 import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.model.User;
 import com.fitness.userservice.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
@@ -43,5 +46,11 @@ public class UserServiceImpl implements UserService{
 
         return  new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getCreatedAt(),user.getUpdatedAt());
 
+    }
+
+    @Override
+    public Boolean validateUser(String userId) {
+        log.info("validating user from database");
+        return  userRepository.existsById(userId);
     }
 }
