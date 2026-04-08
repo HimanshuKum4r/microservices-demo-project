@@ -17,7 +17,7 @@ public class UserValidationService {
         log.info("calling user service : " +userId);
         try {
             return userServiceWebClient.get().uri("/api/{userId}/validate", userId)
-                    .retrieve().bodyToMono(Boolean.class).block();
+                    .retrieve().bodyToMono(Boolean.class).block(); //sync
         } catch (WebClientResponseException e) {
             e.printStackTrace();
         }

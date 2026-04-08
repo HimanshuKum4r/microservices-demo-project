@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
         <option value="$USER_HOME$/Downloads/activityservice/activityservice/pom.xml" />
         <option value="$PROJECT_DIR$/activityservice/activityservice/pom.xml" />
+        <option value="$PROJECT_DIR$/aiservice/aiservice/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
