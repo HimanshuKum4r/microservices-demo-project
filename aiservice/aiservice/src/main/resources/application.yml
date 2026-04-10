@@ -1,11 +1,36 @@
 spring:
   application:
     name: aiservice
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+       group-id: activity-processor-group
+       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+       properties:
+         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+         spring.json.use.type.headers: false
+         spring.json.value.default.type: com.aiservice.model.Activity
+         spring.json.trusted.packages: "*"
+
+gemini:
+  api:
+    url: ${GEMINI_URL}
+    key: ${GEMINI_KEY}
+
+kafka:
+  topic:
+    name: activity-events
+
+
+
 
 
   data:
     mongodb:
       uri: mongodb://localhost:27017/airecommendationfitness
+
+
 eureka:
   client:
     serviceUrl:
