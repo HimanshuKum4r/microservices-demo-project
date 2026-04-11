@@ -1,6 +1,9 @@
 spring:
   application:
     name: aiservice
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/airecommendationfitness
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -22,13 +25,6 @@ kafka:
   topic:
     name: activity-events
 
-
-
-
-
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/airecommendationfitness
 
 
 eureka:
