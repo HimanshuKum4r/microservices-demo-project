@@ -11,6 +11,8 @@
         <option value="$USER_HOME$/Downloads/activityservice/activityservice/pom.xml" />
         <option value="$PROJECT_DIR$/activityservice/activityservice/pom.xml" />
         <option value="$PROJECT_DIR$/aiservice/aiservice/pom.xml" />
+        <option value="$PROJECT_DIR$/configserver/configserver/pom.xml" />
+        <option value="$PROJECT_DIR$/gatewayservice/gatewayservice/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
