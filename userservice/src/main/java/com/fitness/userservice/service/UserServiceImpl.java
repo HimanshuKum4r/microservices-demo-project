@@ -51,6 +51,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public Boolean validateUser(String userId) {
         log.info("validating user from database");
-        return  userRepository.existsById(userId);
+        return  userRepository.existsByKeycloakId(userId);
     }
 }

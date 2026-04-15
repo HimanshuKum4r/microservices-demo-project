@@ -1,6 +1,9 @@
 spring:
-  application:
-    name: gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8181/realms/fitness-microservices/protocol/openid-connect/certs
   cloud:
     gateway:
         routes:
@@ -8,16 +11,24 @@ spring:
             uri: lb://USER-SERVICE
             predicates:
               - Path=/api/users/**
+            filters:
+                - RewritePath=/api/users/(?<segment>.*), /api/users/${segment}
 
           - id: ai-service
             uri: lb://AI-SERVICE
             predicates:
               - Path=/api/recommendations/**
+            filters:
+              - RewritePath=/api/recommendations/(?<segment>.*), /api/recommendations/${segment}
 
           - id: activity-service
             uri: lb://ACTIVITY-SERVICE
             predicates:
-              - Path=/api/activities/**
+                - Path=/api/activities/**
+            filters:
+                - RewritePath=/api/activities/(?<segment>.*), /api/activities/${segment}
+
+
 
 server:
   port: 8083
