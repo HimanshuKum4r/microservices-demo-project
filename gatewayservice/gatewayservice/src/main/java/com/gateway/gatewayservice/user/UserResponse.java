@@ -1,11 +1,6 @@
-package com.fitness.userservice.dto;
+package com.gateway.gatewayservice.user;
 
-import com.fitness.userservice.model.UserRole;
-import jakarta.persistence.Column;
-import jakarta.persistence.Enumerated;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +13,7 @@ import java.time.LocalDateTime;
 public class UserResponse {
 
     private String id;
-    private String keycloakId;
+//    private String keycloakId;
     private String firstName;
     private String lastName;
     private String email;

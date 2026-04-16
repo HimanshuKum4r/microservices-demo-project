@@ -1,10 +1,11 @@
-package com.fitness.userservice.dto;
+package com.gateway.gatewayservice.user;
 
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -18,9 +19,8 @@ public class RegisterRequest {
     @Email
     private String email;
 
-    private String keycloakId;
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "atleast 6 characters")
-    private String password;
+    private String KeycloakId;
+
+    private  String password;
 
 }

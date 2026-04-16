@@ -1,0 +1,27 @@
+package com.gateway.gatewayservice.user;
+
+
+
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@Configuration
+public class WebClientConfig {
+
+   @Bean
+  @LoadBalanced // internal load balancing
+    public WebClient.Builder webClientBuilder(){
+
+        return WebClient.builder();
+    }
+
+    // creates an instance of web client pointing to userservice and call userservice api from any method
+    @Bean
+    public  WebClient UserServiceWebClient( WebClient.Builder webClientBuilder){
+       return webClientBuilder.baseUrl("http://USER-SERVICE").build();
+    }
+
+
+}

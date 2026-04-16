@@ -19,23 +19,37 @@ public class UserServiceImpl implements UserService{
     public UserResponse registerRequest(RegisterRequest request) {
 
         if(userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("user already exists");
+            User existingUser = userRepository.findByEmail(request.getEmail());
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(existingUser.getId());
+            userResponse.setEmail(existingUser.getEmail());
+            userResponse.setFirstName(existingUser.getFirstName());
+            userResponse.setLastName(existingUser.getLastName());
+            userResponse.setCreatedAt(existingUser.getCreatedAt());
+            userResponse.setUpdatedAt(existingUser.getUpdatedAt());
+
+            return userResponse;
         }
 
         User user = new User();
-
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
+        user.setKeycloakId(request.getKeycloakId());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
 
-        userRepository.save(user);
+        User saveduser = userRepository.save(user);
 
+        UserResponse userResponse = new UserResponse();
+        userResponse.setId(saveduser.getId());
+        userResponse.setKeycloakId(saveduser.getKeycloakId());
+        userResponse.setEmail(saveduser.getEmail());
+        userResponse.setFirstName(saveduser.getFirstName());
+        userResponse.setLastName(saveduser.getLastName());
+        userResponse.setCreatedAt(saveduser.getCreatedAt());
+        userResponse.setUpdatedAt(saveduser.getUpdatedAt());
 
-        return  new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getCreatedAt(),user.getUpdatedAt());
-
-
-
+        return userResponse;
 
     }
 
@@ -44,7 +58,16 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new RuntimeException(" user not found"));
 
-        return  new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getCreatedAt(),user.getUpdatedAt());
+        UserResponse userResponse = new UserResponse();
+        userResponse.setId(user.getId());
+        userResponse.setKeycloakId(user.getKeycloakId());
+        userResponse.setEmail(user.getEmail());
+        userResponse.setFirstName(user.getFirstName());
+        userResponse.setLastName(user.getLastName());
+        userResponse.setCreatedAt(user.getCreatedAt());
+        userResponse.setUpdatedAt(user.getUpdatedAt());
+
+        return userResponse;
 
     }
 
